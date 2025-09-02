@@ -8,6 +8,9 @@ import { useTranslation } from "react-i18next";
 import { useRef } from "react";
 import { useEffect, useState } from "react";
 import axiosInstance from "@/axiosInstance";
+import CircleLoader from "../layout/CircleLoader";
+import { useAppDispatch, useAppSelector } from "@/lib/store";
+import { fetchTeamSlides } from "@/lib/slidersSlice";
 const team = Array.from({ length: 6 }).map((_, i) => ({
   id: i,
   name: "John Carter",
@@ -19,18 +22,8 @@ export default function TeamSlider() {
   const { t } = useTranslation();
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
-   const [SliderData, setSliderData] = useState<any[]>([]);
 
-  useEffect(() => {
-   axiosInstance.get("/api/team-sliders?populate=*")
-     .then((response) => {
-       setSliderData(response.data.data);
-     })
-     .catch((error) => {
-       console.error("Error fetching hero sections:", error);
-     });
-  }, []);
-function useIsRTL() {
+  function useIsRTL() {
   const [isRTL, setIsRTL] = useState(false);
 
   useEffect(() => {
@@ -54,6 +47,31 @@ function useIsRTL() {
   return isRTL;
 }
 const isRTL = useIsRTL();
+
+const dispatch = useAppDispatch();
+  const { team, loadingTeam, errorTeam } = useAppSelector((s) => s.sliders);
+
+
+  useEffect(() => {
+    dispatch(fetchTeamSlides());
+  }, [dispatch]);
+
+  if (loadingTeam) {
+    return (
+      <section className="py-16 bg-white flex justify-center">
+        <CircleLoader className="border-coffee-700 border-t-coffee-900" />
+      </section>
+    );
+  }
+  if (errorTeam) {
+    return (
+      <section className="py-16 text-center text-red-500">
+        Failed to load team
+      </section>
+    );
+  }
+  if (!team.length) return null;
+
   return (
     <section id="team" className="py-16 bg-white">
       <div className="mx-auto max-w-screen-xl px-6">
@@ -96,7 +114,7 @@ const isRTL = useIsRTL();
               1024: { slidesPerView: 3 },
             }}
           >
-            {SliderData.map((m) => (
+            {team.map((m) => (
               <SwiperSlide key={m.id}>
                 <article className=" overflow-hidden bg-white ring-1 ring-black/5 shadow-sm  transition">
                   <div className="relative aspect-[4/3]">
