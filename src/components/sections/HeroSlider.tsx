@@ -44,7 +44,7 @@ function SlideContent({
       {/* Foreground content */}
       <div className="relative z-10 md:mx-auto max-w-screen-xl px-6 h-full
                       flex md:flex-row flex-col gap-8 md:items-center
-                      py-10 md:py-0">
+                      py-10 md:py-0 justify-center md:justify-between">
         {/* TEXT (under image on mobile via order) */}
         <motion.div
           className="max-w-xl text-white order-2 md:order-1"
@@ -64,19 +64,19 @@ function SlideContent({
 
         {/* IMAGE (on top on mobile) */}
         <motion.div
-          className="order-1 md:order-2 w-full md:w-[320px]"
+          className=" md:order-2 w-full flex items-center justify-center md:w-[320px]"
           variants={fadeUp}
           initial="hidden"
           animate={isActive ? "visible" : "hidden"}
           key={`img-${i}`}
         >
-          <div className="bg-coffee-600 p-2 rounded flex items-center justify-center">
+          <div className="bg-coffee-600 w-[320px] p-2 rounded ">
             <Image
               src={imgUrl}
               alt={data?.Title || "portrait"}
-              width={600}
-              height={700}
-              className="w-full h-auto object-cover"
+              width={400}
+              height={400}
+              className=" h-auto object-cover"
             />
           </div>
         </motion.div>
