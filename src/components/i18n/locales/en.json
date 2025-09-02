@@ -1,0 +1,8 @@
+{
+  "nav": { "home": "Home", "about": "About us", "services": "Services", "team": "Our Team", "blog": "Blog", "contact": "Contact us", "book": "Book Appointment", "search": "Search..." },
+  "hero": { "title": "Lorem Ipsum", "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.", "readMore": "Read More" },
+  "team": { "sectionTitle": "Our Team", "sectionDesc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.", "name": "Name Here", "position": "POSITION HERE" },
+  "testi": { "title": "What our clients are saying", "quote": "With the help of the hospitable staff of Al Safar and Partners I was able to get my work done without any hassle. The help I received helped me a great deal to overcome the issues that I faced. I was always updated about my case and my queries never went unanswered." },
+  "footer": { "email": "Email", "subscribe": "Subscribe", "contacts": "Contacts", "links": { "about": "About", "strategy": "Our Strategy", "advantages": "Our Advantages", "responsibility": "Social Responsibility", "services": "Our Services" }, "rights": "© 2024. All rights reserved." },
+  "actions": { "toggleLang": "عربي" }
+}

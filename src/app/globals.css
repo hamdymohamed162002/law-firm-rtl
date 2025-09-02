@@ -1,26 +1,166 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import "aos/dist/aos.css"; /* <-- add this */
+@theme {
+  --color-coffee-50: #f6f1ee;
+  --color-coffee-100: #eadfd9;
+  --color-coffee-200: #d0bfb8;
+  --color-coffee-300: #b69f97;
+  --color-coffee-400: #997b6f;
+  --color-coffee-500: #6e4a37;
+  --color-coffee-600: #5c3e2f;
+  --color-coffee-700: #4a3227;
+  --color-coffee-800: #38261e;
+  --color-coffee-900: #281a15;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Smooth fonts */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ---- HERO custom controls ---- */
+.hero-controls {
+  left: -1.5rem;
+  z-index: 1000;
+} /* aligns with px-6 content padding */
+html[dir="rtl"] .hero-controls {
+  right: -1.5rem;
+  left: auto;
+}
+
+.hero-pagination {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.hero-pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  opacity: 1;
+  background: #ffffff66;
+  border: 1px solid #fff;
+}
+.hero-pagination .swiper-pagination-bullet-active {
+  background: #fff;
+}
+
+/* Hide Swiper's default arrows (we render our own next button) */
+.swiper-button-prev,
+.swiper-button-next {
+  display: none !important;
+}
+
+/* Hide default Swiper arrows (we only want our Next) */
+.swiper-button-prev,
+.swiper-button-next {
+  display: none !important;
+}
+
+/* Testimonials bullets (if you kept that section) */
+.testi-swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fff;
+  background: transparent;
+  opacity: 1;
+}
+.testi-swiper .swiper-pagination-bullet-active {
+  background: #fff;
+}
+
+.Header-Container {
+  background-image: url("/Banner.png");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Team slider arrows */
+.team-nav {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.team-prev,
+.team-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 9999px;
+  font-size: 40px;
+  background: #fff;
+  color: var(--color-coffee-700);
+  display: grid;
+  place-items: center;
+
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.team-prev {
+  left: -100px;
+}
+.team-next {
+  right: -100px;
+}
+.team-prev:hover,
+.team-next:hover {
+  background: var(--color-coffee-700);
+  color: #fff;
+  border-color: var(--color-coffee-700);
+}
+
+/* Keep arrows visible but not cramped on mobile */
+@media (max-width: 640px) {
+  .team-prev,
+  .team-next {
+    width: 32px;
+    height: 32px;
   }
 }
+/* Testimonial pagination style (white ring) */
+.testi-swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fff;
+  background: transparent;
+  opacity: 1;
+}
+.testi-swiper .swiper-pagination-bullet-active {
+  background: #fff;
+}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom next/prev buttons */
+.testi-prev,
+.testi-next {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #ffffff33;
+  background: #ffffff1a;
+  color: #fff;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.testi-next {
+  background: #fff;
+  color: var(--color-coffee-700);
+  border-color: #fff;
+}
+.testi-prev:hover,
+.testi-next:hover {
+  filter: brightness(0.92);
+}
+
+@media (max-width: 640px) {
+  .team-prev,
+  .team-next {
+    width: 32px;
+    height: 32px;
+    display: none;
+  }
 }
